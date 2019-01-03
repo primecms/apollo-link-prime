@@ -1,0 +1,39 @@
+{
+  "name": "apollo-link-prime",
+  "version": "0.0.1",
+  "description": "Apollo link for Prime",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/babel src/index.js -d lib",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/primecms/apollo-link-prime.git"
+  },
+  "keywords": [
+    "graphql",
+    "apollo",
+    "link",
+    "prime"
+  ],
+  "author": "birkir.gudjonsson@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/primecms/apollo-link-prime/issues"
+  },
+  "homepage": "https://github.com/primecms/apollo-link-prime#readme",
+  "dependencies": {
+    "apollo-link": "^1.2.6",
+    "apollo-link-context": "^1.0.12",
+    "apollo-link-http": "^1.5.9",
+    "graphql": "^14.0.2",
+    "isomorphic-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3"
+  }
+}
