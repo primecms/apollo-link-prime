@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/primecms/apollo-link-prime#readme",
   "dependencies": {
+    "@babel/runtime": "7.3.1",
     "apollo-link": "^1.2.6",
     "apollo-link-context": "^1.0.12",
     "apollo-link-http": "^1.5.9",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-runtime": "7.2.0",
     "@babel/preset-env": "^7.2.3"
   }
 }
