@@ -32,11 +32,14 @@ export function clearPreview() {
 }
 
 
-export function PrimeLink({ url, cookies, linkResolver, ssrMode = false }) {
+export function PrimeLink({ url, cookies, linkResolver, accessToken, ssrMode = false }) {
   const primeLink = setContext(
     async (request, options) => {
 
-      const extra = {};
+      const extra = {
+        ...accessToken ? { 'x-prime-token': accessToken } : {},
+      };
+
       const query = getQuery();
       
       // client handling
@@ -47,14 +50,14 @@ export function PrimeLink({ url, cookies, linkResolver, ssrMode = false }) {
 
           document.cookie = 'prime.refreshToken=' + res.refreshToken;
           document.cookie = 'prime.accessToken=' + res.accessToken;
-          document.cookie = 'prime.preview=' + res.document.id;
+          document.cookie = 'prime.preview=' + query['prime.id'];
 
           localStorage.setItem('prime.refreshToken', res.refreshToken);
           localStorage.setItem('prime.accessToken', res.accessToken);
-          localStorage.setItem('prime.preview', res.document.id);
+          localStorage.setItem('prime.preview', query['prime.id']);
 
           extra['x-prime-token'] = res.accessToken;
-          extra['x-prime-preview'] = res.document.id;
+          extra['x-prime-preview'] = query['prime.id'];
 
           if (ssrMode) {
             if (typeof linkResolver === 'function') {
