@@ -17,6 +17,10 @@ const getQuery = () => {
   return {};
 }
 
+export function isPreviewing() {
+  return !!localStorage.getItem('prime.preview');
+}
+
 export function clearPreview() {
   if (browser) {
     localStorage.deleteItem('prime.refreshToken');
