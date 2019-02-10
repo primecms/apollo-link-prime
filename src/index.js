@@ -18,14 +18,14 @@ const getQuery = () => {
 }
 
 export function isPreviewing() {
-  return !!localStorage.getItem('prime.preview');
+  return getQuery()['prime.id'] || !!localStorage.getItem('prime.preview');
 }
 
 export function clearPreview() {
   if (browser) {
-    localStorage.deleteItem('prime.refreshToken');
-    localStorage.deleteItem('prime.accessToken');
-    localStorage.deleteItem('prime.preview');
+    localStorage.removeItem('prime.refreshToken');
+    localStorage.removeItem('prime.accessToken');
+    localStorage.removeItem('prime.preview');
 
     document.cookie = 'prime.refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     document.cookie = 'prime.accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -36,7 +36,7 @@ export function clearPreview() {
 }
 
 
-export function PrimeLink({ url, cookies, linkResolver, accessToken, ssrMode = false }) {
+export function PrimeLink({ url, accessToken, linkResolver, cookies = {}, ssrMode = false }) {
   const primeLink = setContext(
     async (request, options) => {
 
@@ -83,11 +83,11 @@ export function PrimeLink({ url, cookies, linkResolver, accessToken, ssrMode = f
 
       // server side handling of cookies
 
-      if (cookies['prime.accessToken']) {
+      if (cookies && cookies['prime.accessToken']) {
         extra['x-prime-token'] = cookies['prime.accessToken'];
       }
 
-      if (cookies['prime.preview']) {  
+      if (cookies && cookies['prime.preview']) {  
         extra['x-prime-preview'] = cookies['prime.preview'];
       }
 
