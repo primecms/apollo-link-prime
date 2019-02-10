@@ -33,3 +33,17 @@ const apolloClient = new ApolloClient({
 | **ssrMode** | boolean | false | If enabled, client will store a preview cookie and reload the page. |
 | **linkResolver** | Function | undefined | This function can return a redirect path for the previewed document in question |
 | **cookies** | object | undefined | Pass cookies from express etc. in object format. The link will read stored preview cookie from _ssrMode_ |
+
+### Client
+
+You read preview state and clear it with the following utility functions.
+
+```js
+import { clearPreview, isPreviewing } from 'apollo-link-prime';
+
+// client code
+
+if (isPreviewing()) {
+  button.onclick = () => clearPreview();
+}
+```
