@@ -2,6 +2,13 @@ import { HttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 
 const browser = typeof window !== 'undefined';
+const storage = new Map();
+
+const localStorage = browser ? global.localStorage : {
+  getItem(key) { return storage.get(key); },
+  setItem(key, value) { return storage.set(key, value); },
+  removeItem(key) { return storage.delete(key); }
+};
 
 const getQuery = () => {
   if (browser) {
