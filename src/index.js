@@ -4,7 +4,7 @@ import { setContext } from 'apollo-link-context';
 const browser = typeof window !== 'undefined';
 const storage = new Map();
 
-const localStorage = browser ? global.localStorage : {
+const localStorage = browser ? window.localStorage : {
   getItem(key) { return storage.get(key); },
   setItem(key, value) { return storage.set(key, value); },
   removeItem(key) { return storage.delete(key); }
