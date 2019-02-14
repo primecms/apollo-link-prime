@@ -1,6 +1,6 @@
 {
   "name": "apollo-link-prime",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Apollo link for Prime",
   "main": "lib/index.js",
   "scripts": {
